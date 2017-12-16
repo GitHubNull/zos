@@ -18,8 +18,8 @@ _bootstart:
 	mov	$BOOTSEG,	%ax
 	mov	%ax,		%es
 	mov	$_string,	%bp
-	mov	$0x1301,	%ax
-	mov	$0x0007,	%bx
+	mov	$0x1301,	%ax #显示中断设置
+	mov	$0x0007,	%bx #显示属性设置
     mov $strLen,    %cx
 	int	$0x10
 loop:	
