@@ -15,6 +15,5 @@ bochs-run: bootsect
 qemu-run: bootsect
 	qemu-system-i386 -boot a -fda bootsect
 
-
 clean:
 	rm -rf ./*.o bootsect
