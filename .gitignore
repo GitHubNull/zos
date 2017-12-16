@@ -57,3 +57,5 @@ bootsect.o
 bx_enh_dbg.ini
 
 *.bin
+.img
+Image

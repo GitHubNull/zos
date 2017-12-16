@@ -9,17 +9,17 @@ bootsect: bootsect.o ld-bootsect.ld
 	ld -T ld-bootsect.ld bootsect.o -o bootsect
 	objcopy -O binary -j .text bootsect
 
-demo.o: demo.s
-	as --32 demo.s -o demo.o
+setup.o: setup.s
+	as --32 setup.s -o setup.o
 
 
-demo: demo.o ld-bootsect.ld
-	ld -T ld-bootsect.ld demo.o -o demo
-	objcopy -O binary -j .text demo
+setup: setup.o ld-bootsect.ld
+	ld -T ld-bootsect.ld setup.o -o setup
+	objcopy -O binary -j .text setup
 
-Image: bootsect demo
+Image: bootsect setup
 	dd if=bootsect of=Image bs=512 count=1
-	dd if=demo of=Image bs=512 count=4 seek=1
+	dd if=setup of=Image bs=512 count=4 seek=1
 	@echo "Image build OK..."
 
 
@@ -30,4 +30,4 @@ qemu-run: Image
 	qemu-system-i386 -boot a -fda Image
 
 clean:
-	rm -rf ./*.o bootsect
+	rm -rf ./*.o bootsect setup Image

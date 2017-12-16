@@ -2,11 +2,10 @@
 
 .text
 
-.equ demoseg, 0x1020
-.equ len, 0x0
+.equ setupseg, 0x9020
 
 show_text:
-    mov $demoseg,   %ax
+    mov $setupseg,  %ax
     mov %ax,        %es
     mov $0x03,      %ah
     xor %bh,        %bh
