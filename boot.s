@@ -17,16 +17,16 @@ ljmp        $BOOTSEG, $_bootstart
 _bootstart:
 # clear 
 #    mov     %dl, (boot_drive)
-#
-#    mov     %cs,        %ax
-#    mov     %ax,        %ds
-#    mov     %ax,        %ss
-#    mov     $signature, %sp
-#
-#    mov     $0xb800,    %bx
-#    mov     %bx,        %es
-#
-#    call    claer_screen
+
+    mov     %cs,        %ax
+    mov     %ax,        %ds
+    mov     %ax,        %ss
+    mov     $signature, %sp
+
+    mov     $0xb800,    %bx
+    mov     %bx,        %es
+
+    call    clear_screen
 # Get cursor position
 	mov	    $0x03,		%ah
 	int	    $0x10
@@ -56,9 +56,9 @@ setup_load_ok:
     mov     $setupseg,   %ax
     mov     %ax,        %ds
 
-    ljmp $9020, $0
+    ljmp $0x9020, $0
 
-claer_screen:
+clear_screen:
     push    %ax;
     push    %bx;
     push    %cx;
